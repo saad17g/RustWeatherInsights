@@ -1,14 +1,18 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: rust-weather-insights-job
+  name: weather-insights-job
 spec:
-  schedule: "*/1   * * * *"
+  schedule: "*/1 * * * *" # Run every 2 minutes
   jobTemplate:
     spec:
       template:
         spec:
           containers:
             - name: rust-weather-insights
-              image: saad17g/rustweatherinsights:v1
+              image: sha256:cb4e10b63c4f36c390da20ff70cf1ade6e71c86c596decb453be9b3458794e58 # Use the correct image name
+              # env:
+              #   - name: INFLUXDB_HOST
+              #     value: "http://your-influxdb-service:8086"  # Set the correct InfluxDB address
+              #   # Add other environment variables if needed
           restartPolicy: OnFailure
