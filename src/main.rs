@@ -30,7 +30,7 @@ async fn main() -> Result<(), Error> {
 
     // calculate the average
     influx_db::write_data(
-        "http://localhost:8086",
+        &config.influxdb_db_url,
         avg_temp,
         avg_hum,
         CITY,
